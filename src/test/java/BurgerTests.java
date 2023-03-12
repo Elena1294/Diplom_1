@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -94,5 +95,14 @@ public class BurgerTests {
         String actual = burger.getReceipt();
 
         assertEquals("Incorrect burger receipt", expected, actual);
+    }
+
+    @Test
+    public void getPrice() {
+        burger.setBuns(bun);
+        burger.addIngredient(ingredient);
+        Mockito.when(bun.getPrice()).thenReturn(5f);
+        Mockito.when(ingredient.getPrice()).thenReturn(10f);
+        Assert.assertEquals(20.0, burger.getPrice(),0);
     }
 }
